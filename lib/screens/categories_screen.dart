@@ -203,8 +203,10 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   if (result > 0) {
                     // Permitirá actualizar la lista con el cambio realizado
                     Navigator.pop(context);
+                    setState(() {
+                      _categoryList.clear();
+                    });
                     getAllCategories();
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => CategoriesScreen()));
                     _showSnackBar('Deleted!');
                   }
                 },
@@ -278,6 +280,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       floatingActionButton: FloatingActionButton(
         //El botón flotante servirá para mostrar el dialogo de registro nuevo
         onPressed: () {
+          _categoryName.text = '';
+          _categoryDescription.text = '';
           _showFormInDialog(context);
         },
         child: Icon(Icons.add),

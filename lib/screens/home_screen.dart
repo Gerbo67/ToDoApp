@@ -79,7 +79,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   if (result > 0) {
                     // Permitirá actualizar la lista con el cambio realizado
                     Navigator.pop(context);
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+                    setState(() {
+                      _todoList.clear();
+                    });
+                    getAllTodos();
                     _showSnackBar('Deleted!');
                   }
                 },
